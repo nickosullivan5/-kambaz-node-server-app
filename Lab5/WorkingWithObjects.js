@@ -15,5 +15,15 @@ export default function WorkingWithObjects(app) {
     assignment.title = newTitle;
     res.json(assignment);
   });
+    app.get("/lab5/assignment/score/:newScore", (req, res) => {
+    const { newScore } = req.params;
+    assignment.score = newScore;
+    res.json(assignment);
+  });
+  app.get("/lab5/assignment/completed/:newCompleted", (req, res) => {
+    const { newCompleted } = req.params;
+    assignment.completed = newCompleted;
+    res.json(assignment);
+  });
 
 };
