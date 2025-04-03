@@ -1,5 +1,5 @@
 import express from 'express'
-import Hello from "./Hello.js"
+// import Hello from "./Hello.js"
 import Lab5 from "./Lab5/index.js";
 import cors from "cors";
 import UserRoutes from "./Kambaz/Users/routes.js";
@@ -36,8 +36,9 @@ app.use(express.json());
 UserRoutes(app);
 CourseRoutes(app);
 Lab5(app)
-Hello(app)
+// Hello(app)
 ModuleRoutes(app);
 AssignmentRoutes(app);
 
 app.listen(process.env.PORT || 4000)
+
