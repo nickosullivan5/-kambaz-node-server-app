@@ -82,6 +82,41 @@ export default function UserRoutes(app) {
     };
     app.post("/api/users/current/courses", createCourse);
 
+    //need to retrieve courseid from path
+    const unenrollFromCourse = async (req, res) => {
+        try {
+            const {cid} = req.params;
+            const currentUser = req.session["currentUser"];
+            console.log("trying to unenroll w/: " ,cid, currentUser)
+            if (!currentUser) return res.status(401).json({error: "Unauthorized"});
+
+            await enrollmentsDao.unenrollUserFromCourse(currentUser._id, cid);
+            const updatedCourses = await courseDao.findCoursesForEnrolledUser(currentUser._id);
+            res.json(updatedCourses);
+        } catch (error) {
+            console.error("Error unenrolling from course:", error);
+            res.status(500).json({error: "Internal Server Error"});
+        }
+    };
+    app.delete("/api/users/current/courses/:cid/enrollments", unenrollFromCourse);
+
+
+    const enrollInCourse = async (req, res) => {
+        try {
+            const {cid} = req.params;
+            const currentUser = req.session["currentUser"];
+            if (!currentUser) return res.status(401).json({error: "Unauthorized"});
+
+            await enrollmentsDao.enrollUserInCourse(currentUser._id, cid);
+            const updatedCourses = await courseDao.findCoursesForEnrolledUser(currentUser._id);
+            res.json(updatedCourses);
+        } catch (error) {
+            console.error("Error enrolling in course:", error);
+            res.status(500).json({error: "Internal Server Error"});
+        }
+    };
+    app.post("/api/users/current/courses/:cid/enrollments", enrollInCourse);
+
     app.post("/api/users", createUser);
     app.get("/api/users", findAllUsers);
     app.get("/api/users/:userId", findUserById);
