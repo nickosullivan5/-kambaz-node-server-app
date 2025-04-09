@@ -3,46 +3,54 @@ import * as courseDao from "../Courses/dao.js";
 import * as enrollmentsDao from "../Enrollments/dao.js";
 
 export default function UserRoutes(app) {
-    const createUser = (req, res) => {
-    };
-    const deleteUser = (req, res) => {
-    };
-const findAllUsers = async (req, res) => {
-  const { role, name } = req.query;
-  console.log(role, name)
-
-  try {
-    let users;
-
-    if (role && name) {
-      users = await dao.findUsersByRoleAndPartialName(role, name);
-
-    } else if (role) {
-      users = await dao.findUsersByRole(role);
-    } else if (name) {
-      users = await dao.findUsersByPartialName(name);
-    } else {
-      users = await dao.findAllUsers();
-    }
-
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch users." });
-  }
-};
-
-
-  const findUserById = async (req, res) => {
-    const user = await dao.findUserById(req.params.userId);
+  const createUser = async (req, res) => {
+    const user = await dao.createUser(req.body);
     res.json(user);
   };
 
+    const deleteUser = async (req, res) => {
+        const status = await dao.deleteUser(req.params.userId);
+        res.json(status);
+    };
+
+    const findAllUsers = async (req, res) => {
+        const {role, name} = req.query;
+        console.log(role, name)
+
+        try {
+            let users;
+
+            if (role && name) {
+                users = await dao.findUsersByRoleAndPartialName(role, name);
+
+            } else if (role) {
+                users = await dao.findUsersByRole(role);
+            } else if (name) {
+                users = await dao.findUsersByPartialName(name);
+            } else {
+                users = await dao.findAllUsers();
+            }
+
+            res.json(users);
+        } catch (error) {
+            res.status(500).json({error: "Failed to fetch users."});
+        }
+    };
+
+
+    const findUserById = async (req, res) => {
+        const user = await dao.findUserById(req.params.userId);
+        res.json(user);
+    };
+
     const updateUser = async (req, res) => {
-        const userId = req.params.userId;
+        const {userId} = req.params;
         const userUpdates = req.body;
-        dao.updateUser(userId, userUpdates);
-        const currentUser = await dao.findUserById(userId);
-        req.session["currentUser"] = currentUser;
+        await dao.updateUser(userId, userUpdates);
+        const currentUser = req.session["currentUser"];
+        if (currentUser && currentUser._id === userId) {
+            req.session["currentUser"] = {...currentUser, ...userUpdates};
+        }
         res.json(currentUser);
     };
 
