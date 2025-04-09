@@ -7,14 +7,37 @@ export default function UserRoutes(app) {
     };
     const deleteUser = (req, res) => {
     };
-      const findAllUsers = async (req, res) => {
-        const users = await dao.findAllUsers();
-        res.json(users);
-      };
+const findAllUsers = async (req, res) => {
+  const { role, name } = req.query;
+  console.log(role, name)
 
-    const findUserById = (req, res) => {
-    };
-    const updateUser = async  (req, res) => {
+  try {
+    let users;
+
+    if (role && name) {
+      users = await dao.findUsersByRoleAndPartialName(role, name);
+
+    } else if (role) {
+      users = await dao.findUsersByRole(role);
+    } else if (name) {
+      users = await dao.findUsersByPartialName(name);
+    } else {
+      users = await dao.findAllUsers();
+    }
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch users." });
+  }
+};
+
+
+  const findUserById = async (req, res) => {
+    const user = await dao.findUserById(req.params.userId);
+    res.json(user);
+  };
+
+    const updateUser = async (req, res) => {
         const userId = req.params.userId;
         const userUpdates = req.body;
         dao.updateUser(userId, userUpdates);
@@ -24,7 +47,7 @@ export default function UserRoutes(app) {
     };
 
 
-    const signup = async  (req, res) => {
+    const signup = async (req, res) => {
         const user = await dao.findUserByUsername(req.body.username);
         if (user) {
             res.status(400).json({message: "Username already taken"});
@@ -90,7 +113,7 @@ export default function UserRoutes(app) {
         try {
             const {cid} = req.params;
             const currentUser = req.session["currentUser"];
-            console.log("trying to unenroll w/: " ,cid, currentUser)
+            console.log("trying to unenroll w/: ", cid, currentUser)
             if (!currentUser) return res.status(401).json({error: "Unauthorized"});
 
             await enrollmentsDao.unenrollUserFromCourse(currentUser._id, cid);
