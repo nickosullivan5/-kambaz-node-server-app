@@ -41,7 +41,7 @@ const quizSchema = new mongoose.Schema(
     timeLimit: { type: Number, required: true },
     multipleAttempts: { type: Boolean, required: true },
     showCorrectAnswers: { type: String, required: true },
-    accessCode: { type: String, required: true },
+    accessCode: String,
     oneQuestionAtATime: { type: Boolean, required: true },
     webcamRequired: { type: Boolean, requried: true },
     lockQuestionsAfterAnswering: { type: Boolean, required: true },

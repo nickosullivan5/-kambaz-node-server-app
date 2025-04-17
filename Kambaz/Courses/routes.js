@@ -85,7 +85,7 @@ export default function CourseRoutes(app) {
         const {quizId} = req.params;
         const quiz = {
             ...req.body,
-            course: courseId,
+            course: quizId,
         };
         const newQuiz = await quizzesDao.createQuiz(quiz);
         res.send(newQuiz);
