@@ -82,7 +82,7 @@ export default function CourseRoutes(app) {
     });
 
     app.post("/api/courses/:courseId/quizzes", async (req, res) => {
-        const {quizId} = req.params;
+        const {courseId} = req.params;
         const quiz = {
             ...req.body,
             course: courseId,

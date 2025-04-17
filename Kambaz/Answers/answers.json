@@ -1,0 +1,31 @@
+[
+  {
+    "_id": "1",
+    "quiz": "1",
+    "user": "234",
+    "course": "RS101",
+    "grade": 40,
+    "date": "2025-04-17T10:00:00Z",
+    "attemptNum": 1,
+    "attemptMax": 1,
+    "answers": [
+      0,
+      true,
+      "rocket fuel"
+    ]
+  },
+  {
+    "_id": "2",
+    "quiz": "2",
+    "user": "234",
+    "course": "RS101",
+    "grade": 0,
+    "date": "2025-04-25T12:00:00Z",
+    "attemptNum": 1,
+    "attemptMax": 3,
+    "answers": [
+      0,
+      false
+    ]
+  }
+]

@@ -1,6 +1,7 @@
 import * as dao from "./dao.js";
 import * as courseDao from "../Courses/dao.js";
 import * as enrollmentsDao from "../Enrollments/dao.js";
+import * as answersDao from "../Answers/dao.js";
 
 export default function UserRoutes(app) {
     const createUser = async (req, res) => {
@@ -189,6 +190,35 @@ export default function UserRoutes(app) {
  };
  app.post("/api/users/:uid/courses/:cid", enrollUserInCourse);
  app.delete("/api/users/:uid/courses/:cid", unenrollUserFromCourse);
+
+    const findAnswerForUser = async (req, res) => {
+        let { uid, cid, qid } = req.params;
+        if (uid === "current") {
+            const currentUser = req.session["currentUser"];
+            uid = currentUser._id;
+        }
+        const answer = await answersDao.findAnswerForUser(uid, qid, cid);
+        res.send(answer);
+    };
+    const createAnswer = async (req, res) => {
+        let { uid, cid, qid } = req.params;
+        if (uid === "current") {
+            const currentUser = req.session["currentUser"];
+            uid = currentUser._id;
+        }
+        const answer = {
+            ...req.body,
+            user: uid,
+            quiz: qid,
+            course: cid,
+        };
+        const newAnswer = await answersDao.createAnswer(answer);
+        res.send(newAnswer);
+        console.log("new answer:")
+        console.log(newAnswer)
+    };
+    app.get("/api/users/:uid/courses/:cid/quizzes/:qid", findAnswerForUser);
+    app.post("/api/users/:uid/courses/:cid/quizzes/:qid", createAnswer);
 
     app.post("/api/users", createUser);
     app.get("/api/users", findAllUsers);
