@@ -79,6 +79,7 @@ export default function CourseRoutes(app) {
         const {courseId} = req.params;
         const quizzes = await quizzesDao.findQuizzesForCourse(courseId);
         res.json(quizzes);
+        // console.log("found quizzes: ", quizzes);
     });
 
     app.post("/api/courses/:courseId/quizzes", async (req, res) => {
@@ -89,7 +90,9 @@ export default function CourseRoutes(app) {
         };
         const newQuiz = await quizzesDao.createQuiz(quiz);
         res.send(newQuiz);
+
         console.log("new quiz:");
         console.log(newQuiz);
+
     });
 }
