@@ -2,7 +2,9 @@ import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
 export function findQuizzesForCourse(courseId) {
-  return model.find({ course: courseId });
+    const quizzes = model.find({ course: courseId }).exec();
+  console.log("Found quizzes: ", quizzes);
+return quizzes
 }
 export function createQuiz(quiz) {
   const newQuiz = { ...quiz, _id: uuidv4() };
