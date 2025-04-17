@@ -1,0 +1,105 @@
+[
+  {
+    "_id": "1",
+    "title": "Rockets 101 Quiz 1",
+    "course": "RS101",
+    "description": "First quiz to test your understanding of rockets!",
+    "quizType": "Graded Quiz",
+    "points": 60,
+    "assignmentGroup": "Quizzes",
+    "shuffleAnswers": false,
+    "timeLimit": 20,
+    "multipleAttempts": false,
+    "howManyAttempts": 0,
+    "showCorrectAnswers": "Never",
+    "accessCode": "Quizzes",
+    "oneQuestionAtATime": false,
+    "webcamRequired": false,
+    "lockQuestionAfterAnswering": false,
+    "dueDate": "2025-04-20T23:59:00Z",
+    "availableDate": "2025-04-15T08:00:00Z",
+    "untilDate": "2025-04-20T23:59:00Z",
+    "published": true,
+    "questions": [
+      {
+        "type": "Multiple Choice",
+        "points": 20,
+        "questionText": "What is 5 + 5?",
+        "choices": ["3", "10", "15", "50"],
+        "correctAnswerIndex": 1
+      },
+      {
+        "type": "True Or False",
+        "points": 20,
+        "questionText": "Can rockets go into space?",
+        "correctAnswer": true
+      },
+      {
+        "type": "Fill In The Blank",
+        "points": 20,
+        "questionText": "What kind of fuel to rockets use?",
+        "possibleAnswers": ["rocket fuel"]
+      }
+    ]
+  },
+  {
+    "_id": "2",
+    "title": "Rockets 101 Quiz 2",
+    "course": "RS101",
+    "description": "Second quiz to test your understanding of rockets!",
+    "quizType": "Ungraded Quiz",
+    "points": 40,
+    "assignmentGroup": "Quizzes",
+    "shuffleAnswers": true,
+    "timeLimit": 30,
+    "multipleAttempts": true,
+    "howManyAttempts": 3,
+    "showCorrectAnswers": "Immediately after submission",
+    "accessCode": "secretcode",
+    "oneQuestionAtATime": true,
+    "webcamRequired": true,
+    "lockQuestionAfterAnswering": true,
+    "dueDate": "2025-04-27T23:59:00Z",
+    "availableDate": "2025-04-21T08:00:00Z",
+    "untilDate": "2025-04-27T23:59:00Z",
+    "published": false,
+    "questions": [
+      {
+        "type": "Multiple Choice",
+        "points": 20,
+        "questionText": "What is 10 + 10?",
+        "choices": ["20", "5", "45", "30"],
+        "correctAnswerIndex": 0
+      },
+      {
+        "type": "True Or False",
+        "points": 20,
+        "questionText": "Rockets never crash",
+        "correctAnswer": false
+      }
+    ]
+  },
+  {
+    "_id": "3",
+    "title": "Rockets 101 Survey",
+    "course": "RS101",
+    "description": "This is a survery quiz for RS101",
+    "quizType": "Graded Survey",
+    "points": 0,
+    "assignmentGroup": "Quizzes",
+    "shuffleAnswers": false,
+    "timeLimit": 0,
+    "multipleAttempts": false,
+    "howManyAttempts": 0,
+    "showCorrectAnswers": "Never",
+    "accessCode": "rocketsurvey",
+    "oneQuestionAtATime": true,
+    "webcamRequired": false,
+    "lockQuestionAfterAnswering": false,
+    "dueDate": "2025-05-03T23:59:00Z",
+    "availableDate": "2025-04-30T08:00:00Z",
+    "untilDate": "2025-05-03T23:59:00Z",
+    "published": true,
+    "questions": []
+  }
+]
