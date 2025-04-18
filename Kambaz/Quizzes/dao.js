@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export function findQuizzesForCourse(courseId) {
     const quizzes = model.find({ course: courseId }).exec();
-  console.log("Found quizzes: ", quizzes);
+  // console.log("Found quizzes: ", quizzes);
 return quizzes
 }
 export function createQuiz(quiz) {

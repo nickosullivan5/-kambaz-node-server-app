@@ -8,7 +8,6 @@ import session from "express-session";
 import "dotenv/config";
 import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
-import QuizzesRoutes from "./Kambaz/Quizzes/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import QuizzesRoutes from "./Kambaz/Quizzes/routes.js";
 import AnswersRoutes from "./Kambaz/Answers/routes.js";

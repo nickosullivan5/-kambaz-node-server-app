@@ -6,8 +6,11 @@ export function findAnswerForUser(userId, quizId, courseId) {
 }
 export function createAnswer(answer) {
   const newAnswer = { ...answer, _id: uuidv4() };
+    console.log("created answer:" , newAnswer)
   return model.create(newAnswer);
 }
 export function updateAnswer(answerId, answerUpdates) {
-  return model.updateOne({ _id: answerId }, answerUpdates);
+  const updatedAnswer =  model.updateOne({ _id: answerId }, answerUpdates);
+  console.log("updated answer:" , updatedAnswer)
+  return updatedAnswer
 }
