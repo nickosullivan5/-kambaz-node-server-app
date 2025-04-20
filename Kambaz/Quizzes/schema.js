@@ -40,6 +40,7 @@ const quizSchema = new mongoose.Schema(
     shuffleAnswers: { type: Boolean, required: true },
     timeLimit: { type: Number, required: true },
     multipleAttempts: { type: Boolean, required: true },
+    howManyAttempts: { type: Number, required: true },
     showCorrectAnswers: { type: String, required: true },
     accessCode: String,
     oneQuestionAtATime: { type: Boolean, required: true },
